@@ -1,6 +1,7 @@
 FROM node:16.20.2
 ## Create app directory
 WORKDIR /usr/src/app
+ENV NODE_OPTIONS="--max-old-space-size=8192"
 ## Install app dependencies
 ## A wildcard is used to ensure both package.json AND package-lock.json are copied where available (npm@5+)
 COPY package*.json ./
