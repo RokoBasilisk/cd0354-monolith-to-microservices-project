@@ -7,9 +7,9 @@ before_script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 script:
+  - docker build -t dhnghia92tcv/udagram-frontend:v1 ./udagram-frontend
   - docker build -t dhnghia92tcv/udagram-api-feed:v1 ./udagram-api-feed
   - docker build -t dhnghia92tcv/udagram-api-user:v1 ./udagram-api-user
-  - docker build -t dhnghia92tcv/udagram-frontend:v1 ./udagram-frontend
   - docker build -t dhnghia92tcv/udagram-reverseproxy:v1 ./udagram-reverseproxy
   - docker push dhnghia92tcv/udagram-api-feed:v1
   - docker push dhnghia92tcv/udagram-api-user:v1

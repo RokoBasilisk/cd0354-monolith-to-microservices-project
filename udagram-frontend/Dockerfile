@@ -1,5 +1,21 @@
+# ### Build
+# FROM node:16.20.2 AS build
+# ## Create app directory
+# WORKDIR /usr/src/app
+# ## Install app dependencies
+# ## A wildcard is used to ensure both package.json AND package-lock.json are copied
+# COPY package*.json ./
+# RUN npm ci -f
+# ## Bundle app source
+# COPY . .
+# RUN ionic build
+# ### Run 
+# FROM nginx:alpine
+# #COPY www /usr/share/nginx/html
+# COPY --from=build /usr/src/app/www /usr/share/nginx/html
+
 ### Build
-FROM node:16.20.2 AS build
+FROM beevelop/ionic:v2021.02.1 AS ionic
 ## Create app directory
 WORKDIR /usr/src/app
 ## Install app dependencies
@@ -12,4 +28,4 @@ RUN ionic build
 ### Run 
 FROM nginx:alpine
 #COPY www /usr/share/nginx/html
-COPY --from=build /usr/src/app/www /usr/share/nginx/html
+COPY --from=ionic  /usr/src/app/www /usr/share/nginx/html
